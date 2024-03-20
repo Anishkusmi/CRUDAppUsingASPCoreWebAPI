@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CRUDAppUsingASPCoreWebAPI.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+@{
+    if (TempData["success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success</strong> @TempData["success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Student Name</th>
+            <th>Student Gender</th>
+            <th>Age</th>
+            <th>Standard</th> 
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.id
+            </td>
+            <td>
+                @item.studentName
+            </td>
+            <td>
+                @item.studentGender
+            </td>
+            <td>
+                @item.age
+            </td>
+            <td>
+                @item.standard
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.id  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.id }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
